@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] a = new int[10];
+            Random rand = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                a[i] = rand.Next(13200, 13325);
+                Console.Write("{0}, ", a[i]);
+            }
+            Console.ReadKey();
+
+        }
+    }
+}
