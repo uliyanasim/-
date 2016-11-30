@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication3
+namespace ConsoleApplication4
 {
     class Program
     {
@@ -16,25 +16,22 @@ namespace ConsoleApplication3
             int j = 0;  //вводим переменную и присваиваем ей значение 
             int i; //вводим переменную
 
-            int[] IM = new int[101]; //определяем тип и размер массива
+            int[] IM = new int[100]; //определяем тип и размер массива
 
-            
-            for (i=1;i < 101;i++) //запускаем цикл
+
+            for (i = 0; i < 100; i++) //запускаем цикл
             {
-             
-               if(i%2==1) //задаем условие
-                 j=j+1;
-                 IM[i]=j;
-                 if (i % 2 == 0) //задаем условие
-                 IM[i]=IM[i-1]*(-1); 
-        
+
+                if (i % 2 == 0) //задаем условие
+                    j = j + 1;
+                IM[i] = j;
+                if (i % 2 == 1) //задаем условие
+                    IM[i] = IM[i - 1] * (-1);
+
                 Console.Write("{0}, ", IM[i]); //выводим массив
             }
 
             Console.ReadKey();
-
         }
     }
 }
-Сформировать массив       IM(100), элементами которого являются числа
-1, -1, 2, -2,..., 50, -50.
