@@ -1,0 +1,74 @@
+//Симонова Ульяна 10МИ3 кр по массивам
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Симонова_Ульяна
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           
+            int j; //вводим перемнные
+            int i;
+            int buf;
+            Console.WriteLine("Введи кол-во элементов массива:"); //вводим количество элементов массива
+            int n = int.Parse(Console.ReadLine());
+            int[] mas = new int[n];
+            for (i = 0; i < n; i++)
+            { 
+                mas[i] = int.Parse(Console.ReadLine()); //вводим элементы массива
+            }
+            Console.WriteLine("Введите 1, если хотите отсортировать массив по убыванию. Введите 2, если хотите отсортировать массив по возрастанию");
+            int a = int.Parse(Console.ReadLine()); 
+            
+           while (a != 2 &&a !=1) //проверяем условие
+            {
+                Console.WriteLine("Введите 1, если хотите отсортировать массив по убыванию. Введите 2, если хотите отсортировать массив по возрастанию");
+                a = int.Parse(Console.ReadLine());
+            }
+
+
+            if (a == 1)
+            {
+                for (i = 0; i < n; i++) //сортировка массива по убыванию
+                {
+                    for (j = i + 1; j < n; j++)
+                    {
+                        if (mas[i] < mas[j])
+                        {
+                            buf = mas[i];
+                            mas[i] = mas[j];
+                            mas[j] = buf;
+                        }
+                    }
+                    Console.Write("{0,5}", mas[i]); //вывод массива
+                }
+                Console.ReadKey();
+            }
+
+                if (a == 2)
+            {
+                for (i = 0; i < n; i++) // сортировка массива по возрастанию
+                {
+                    for (j = i + 1; j < n; j++)
+                    {
+                        if (mas[i] > mas[j])
+                        {
+                            buf = mas[i];
+                            mas[i] = mas[j];
+                            mas[j] = buf;
+                        }
+                    }
+                    Console.Write("{0,5}", mas[i]); //вывод массива
+                 }
+                Console.ReadKey();
+            }
+            
+
+        }
+    }
+}
