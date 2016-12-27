@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Матрицы
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int j = 0;
+            int i;
+            int buf = 0;
+            Console.WriteLine("Введите количество строк квадратной матрицы:");
+            int N = int.Parse(Console.ReadLine());
+            int[,] mas = new int[N, N];
+            Random rand = new Random();
+            for (i = 0; i < N; i++)
+            {
+                for (j = 0; j < N; j++)
+                {
+                    mas[i, j] = rand.Next(-15, 15);
+                    Console.Write("{0,9}", mas[i, j]);
+                }
+                Console.WriteLine();
+            }
+            for (i = 0; i < N; i++)
+            {
+                for (j = 0; j < N; j++)
+                {
+                    if ( i>=j)
+                    {
+                        buf = buf + mas [i, j] ;
+                    }
+
+
+                }
+             }
+            Console.Write(buf);
+            Console.ReadKey();
+        }
+    }
+}
