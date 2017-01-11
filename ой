@@ -1,0 +1,51 @@
+/*Симонова Ульяна
+ * группа10МИ3*/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите количество строк:");
+            int b;
+            int n = int.Parse(Console.ReadLine());
+          
+            string[,] Matrix=new string[n,n]; 
+
+
+                     for (int i = 0; i < n; i++) 
+                     { 
+                        b = 1; 
+                           for (int j = 0; j <= i; j++)
+                           {
+                            
+                                   if (j <= i) 
+                                       { 
+                                          string str = b.ToString(); 
+                                          Matrix[i, j] = str; 
+                                          b += 1; 
+                                       } 
+                                  else { Matrix[i, j] = ""; } 
+                               } 
+                      } 
+                   
+                    for (int i = 0; i < n; i++) 
+                     { 
+                           for (int j = 0; j < n; j++) { Console.Write("{0}\t", Matrix[i, j]); 
+                      }
+                        Console.WriteLine(); 
+
+                      } 
+                    Console.ReadLine(); 
+
+        } 
+    } 
+}
+
+      
