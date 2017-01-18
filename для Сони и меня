@@ -1,0 +1,38 @@
+using System;
+class MyArray
+{
+    public static void Main()
+    {
+        string[] s; //Ссылка на массив строк
+        string buf, //Очередная введенная строка
+         sout; //Выходная строка
+        int i, //Номер строки в тексте
+         k, //Количество строк
+         j; //Номер символа в строке
+        char rep; //Признак повторного выполнения
+
+        do
+        {
+            Console.WriteLine("Сколько строк: ");
+            buf = Console.ReadLine();
+            k = int.Parse(buf);
+            s = new string[k];
+            for (i = 0; i < k; i++)
+            {
+                Console.WriteLine("Введите строку:");
+                buf = Console.ReadLine();
+                s[i] = buf;
+            }
+            sout = "";
+            for (i = 0; i < k; i++)
+                for (j = 0; j < s[i].Length; j++)
+                    if (char.IsLetter(s[i][j]))
+                        sout += s[i][j];
+            sout = sout.ToUpper();
+            Console.Write(sout);
+            Console.Write("\nДля повтора намите клавишу Y: ");
+            rep = char.Parse(Console.ReadLine());
+            Console.WriteLine();
+        } while (rep == 'Y' || rep == 'y');
+    }
+}//Конец определения метод
