@@ -1,0 +1,53 @@
+треугольная матрица в виде треугольника, где нули заменены на пробелы
+11111
+ 222 
+  3
+  
+  /*Симонова Ульяна 10МИ3 3 задача*/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Симонова
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите количество строк");
+            int n = int.Parse(Console.ReadLine());
+            int buf=2*n-1;
+            int[,] mas = new int[n, buf];
+            int i=0;
+            int l=0;
+            int k=0;
+            int h = 1;
+            for (; i < n; i++)
+            {
+                l++;
+                for (int j = k; j < buf; j++)
+                {
+                    mas[i, j] = l;
+                    
+                }
+                 k += 1;
+                 buf -= 1;
+                 h += 1;
+            }
+                for (i = 0; i < n; i++)
+            {
+                for (int j = 0; j < 2 * n - 1; j++)
+                {
+                    if (mas[i, j] != 0)
+                        Console.Write("{0}\t", mas[i, j]);
+                    else
+                        Console.Write("{0}\t", " ");
+                }
+                Console.WriteLine();
+            } Console.ReadKey();
+        }
+    }
+}
+
+          
