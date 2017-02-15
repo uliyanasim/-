@@ -1,0 +1,42 @@
+/*
+ Симоновой Ульяны
+ группа 10МИ3
+ задача №20
+ 15.02.2017
+ */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Симонова_Ульяна
+
+{
+    class Program
+    {
+        static int nod(int a, int b)
+        {
+            if (b == 0)
+                return a;
+            else
+                return nod(b, a % b);
+        }
+
+        static int nok(int a, int b)
+        {
+            return a / nod(a, b) * b;
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите первое число");
+            int a = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите второе число");
+            int b = int.Parse(Console.ReadLine());
+            Console.WriteLine("Наименьшее общее кратное введенных вами чисел равно " + nok(a, b));
+            Console.ReadLine();
+
+        }
+    }
+}
+
