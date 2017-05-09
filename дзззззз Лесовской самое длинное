@@ -1,0 +1,263 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Collections;
+
+
+namespace Симонова_Ульяна_дз
+{
+    
+    class Газ 
+    {
+        //поля объекта
+        private float тариф;
+        private string фамилия;
+        private int количество_проживающих;
+
+
+        // свойства объекта
+        public float Тариф
+        {
+            get { return this.тариф; }
+            set { this.тариф = value; }
+        }
+        public int  Количество_проживающих
+        {
+            get { return this.количество_проживающих; }
+            set { this.количество_проживающих = value; }
+        }
+        public string Фамилия
+        {
+            get { return this.фамилия; }
+            set { this.фамилия = value; }
+        }
+
+
+        //конструкторы
+        public Газ()
+        {
+            this.тариф = (float)6.15;
+            this.фамилия = "Ноунейм";
+            this.количество_проживающих = 1;
+        }
+        public Газ(float a, string b, int c)
+        {
+            this.тариф = a;
+            this.фамилия = b;
+            this.количество_проживающих = c;
+        }
+
+        //методы
+        public float Платеж()
+        {
+            return this.количество_проживающих * this.тариф;
+        }
+
+        public void Вывод()
+        {
+            Console.WriteLine("~~~\nФамилия: {0}\nКоличество проживающих: {1}\nТариф, по которому оплачивают счет проживающие: {2}\nОбщий платеж: {3}\n~~~", this.фамилия, this.количество_проживающих, this.тариф, this.Платеж());
+        }
+    }
+
+    class Электро
+    {
+        // поля
+        private float тариф;
+        private float среднее_потребление;
+        private float фиксированное_потребление;
+        private string фамилия;
+
+        //свойства
+        public float Тариф
+        {
+            get { return this.тариф; }
+            set { this.тариф = value; }
+        }
+        public float Фиксированное_потребление
+        {
+            get { return this.фиксированное_потребление; }
+            set { this.фиксированное_потребление = value; }
+        }
+        public float Среднее_потребление
+        {
+            get { return this.среднее_потребление; }
+            set { this.среднее_потребление = value; }
+        }
+        public string Фамилия
+        {
+            get { return this.фамилия; }
+            set { this.фамилия = value; }
+        }
+
+        //конструкторы
+        public Электро()
+        {
+            this.тариф = (float)5.59;
+            this.фамилия = "Ноунейм";
+            this.среднее_потребление = 70;
+            this.фиксированное_потребление = 70;
+        }
+        public Электро(float a, float b, float c, string d)
+        {
+            this.тариф = a;
+            this.фамилия = d;
+            this.среднее_потребление = b;
+            this.фиксированное_потребление = c;
+        }
+
+        //методы
+       public float Платеж()
+        {
+            return this.тариф * this.фиксированное_потребление; 
+        }
+
+        // attention! впереди перегрузка
+        public void Вывод(string a)
+        {
+            Console.WriteLine("Оплата фиксированная:\nФамилия - {0}\nПлатеж - {1} ", a, this.Платеж());
+        }
+
+        public void Вывод(string a, float b)
+        {
+            Console.WriteLine("Оплата по факту:\nФамилия - {0}\nЗначение счетчика - {1} ", a, b);
+        }
+    }
+
+    
+
+    class Запрос 
+    {
+        static Random rnd = new Random();
+        public  Газ [] Заполнить(Газ [] газ)
+        {
+            for (int i = 0; i < газ.Length; i++)
+            {
+                газ[i].Фамилия = "Фамилия" + rnd.Next(0, 666); 
+                газ[i].Количество_проживающих = rnd.Next(0, 13);
+                газ[i].Тариф = rnd.Next(3, 6) + (float)rnd.NextDouble();
+            }
+            return  газ;
+        }
+
+        public void Вывести (Газ[] газ)
+        {
+            for (int i = 0; i < газ.Length; i++)
+            {
+                Console.WriteLine("~~~\nФамилия: {0}\nКоличество проживающих: {1}\nТариф: {2}\n~~~", газ[i].Фамилия, газ[i].Количество_проживающих, газ[i].Тариф );
+            }
+        }
+
+        public void Вывести(Электро[] электро)
+        {
+            for (int i = 0; i < электро.Length; i++)
+            {
+                Console.WriteLine("~~~\nФамилия: {0}\nСреднее потребление: {1}\nФиксированное потребление: {2}\nТариф: {3}\n~~~", электро[i].Фамилия, электро[i].Среднее_потребление, электро[i].Фиксированное_потребление, электро[i].Тариф);
+            }
+        }
+
+        public Электро [] Заполнить(Электро [] электро, Газ[] газ)
+        {
+            for (int i = 0; i < электро.Length; i++)
+            {
+                электро[i].Фамилия = газ[i].Фамилия;
+                электро[i].Среднее_потребление = rnd.Next(60, 120);
+                электро[i].Фиксированное_потребление = rnd.Next(60, 120);
+                электро[i].Тариф = rnd.Next(3, 6) + (float)rnd.NextDouble();
+            }
+            return электро;
+        }
+
+        public ArrayList Заполнить(Газ [] газ, ArrayList платеж)
+        {
+            платеж.Add("Газ:");
+            for (int i = 0; i<газ.Length; i++)
+            {
+                платеж.Add(газ[i].Платеж());
+            }
+            return платеж;
+        }
+        public ArrayList Заполнить(Электро[] электро, ArrayList платеж)
+        {
+            платеж.Add("Электричество:");
+            for (int i = 0; i < электро.Length; i++)
+            {
+                платеж.Add(электро[i].Платеж());
+            }
+            return платеж;
+        }
+        public void Вывести(ArrayList платеж)
+        {
+            for(int i = 0; i<платеж.Count; i++)
+            {
+                Console.WriteLine(платеж[i]);
+            }
+        }
+
+    }
+
+    class Programm
+        {
+            static void Main(string[] args)
+            {
+            int количество_людей = 1;
+            string n;
+            Запрос a = new Запрос();
+            Console.Write("Не желаете ввести количество семей, обитающих в Вашем доме, сир? Если хотите - сразу введите количество семей, если нет - довольствуйтесь одной единственной и нажимайте любую клавишу (кроме цифр) для продолжения:");
+            if (Int32.TryParse(Console.ReadLine(), out количество_людей)) { Console.WriteLine("В вашем доме теперь {0} семей", количество_людей); } else { Console.WriteLine("А ведь у Вас был шанс..."); }
+            Газ[] газ = new Газ[количество_людей];
+            Электро[] электро = new Электро[количество_людей];
+            for(int i = 0; i<газ.Length; i++)
+            {
+                газ[i] = new Газ();
+                электро[i] = new Электро();
+            }
+                Console.WriteLine("Сами хотите заполнить или нет? Если хотите сами заполнить анкеты, то нажмите 1, если нет - любую другую клавишу:\n");
+                n = Console.ReadLine();
+                if (n == "1")
+                {
+                    for (int i = 0; i < количество_людей; i++)
+                    {
+
+
+                        Console.WriteLine("Введите фамилию семьи, нашедшей приют в Вашем доме:");
+                        газ[i].Фамилия = Console.ReadLine();
+                        электро[i].Фамилия = газ[i].Фамилия;
+                        Console.WriteLine("А теперь количество членов семьи:");
+                        газ[i].Количество_проживающих = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Напоследок - тариф, коий юзает Ваша семья:\nГаз:");
+                        газ[i].Тариф = float.Parse(Console.ReadLine());
+                        Console.WriteLine("Электричество:");
+                        электро[i].Тариф = float.Parse(Console.ReadLine());
+                        Console.WriteLine("Среднее потребление эл-ва:");
+                        электро[i].Среднее_потребление = float.Parse(Console.ReadLine());
+                        Console.WriteLine("Фиксированное потребление эл-ва:");
+                        электро[i].Фиксированное_потребление = float.Parse(Console.ReadLine());
+                        Console.WriteLine("Мои поздравления, Вы сумели ввести данные для этой семьи. Она Вам вовек благодарна.\n");
+
+                    }
+                }
+            else
+            {
+                газ = a.Заполнить(газ);
+                электро = a.Заполнить(электро, газ);
+            }
+            a.Вывести(газ);
+            a.Вывести(электро);
+            ArrayList платеж = new ArrayList();
+            платеж = a.Заполнить(газ, платеж);
+            платеж = a.Заполнить(электро, платеж);
+            a.Вывести(платеж);
+            for (int i = 0; i < количество_людей; i++)
+            {
+                газ[i].Вывод();
+                электро[i].Вывод(электро[i].Фамилия);
+                электро[i].Вывод(электро[i].Фамилия, электро[i].Фиксированное_потребление);
+            }
+            Console.ReadKey();
+            }
+    }
+    
+}
